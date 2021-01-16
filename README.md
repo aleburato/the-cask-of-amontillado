@@ -29,4 +29,4 @@ Part of you dies each brick I lay
 You'll feel your mind slipping away
 ```
 
-_The Alan Parsons Project_
+The Alan Parsons Project

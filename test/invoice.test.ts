@@ -1,6 +1,7 @@
-import { EmptyInvoiceError, Invoice } from "../src/invoice";
+import { Invoice } from "../src/invoice";
 import { IBasketItem } from "../src/models/basketItem";
-import { IInvoiceItem } from "../src/models/invoiceItem";
+import { IInvoiceEntry } from "../src/models/invoiceEntry";
+import { EmptyInvoiceError } from "../src/utils/errors";
 
 const MOCK_BASKET_ITEM_1 = {
   qty: 3,
@@ -27,9 +28,9 @@ describe("Invoice", () => {
 
   it("Creates a correct invoice with a single item", () => {
     const invoice = new Invoice([MOCK_BASKET_ITEM_1]);
-    const expectedInvoiceItems: IInvoiceItem[] = [
+    const expectedInvoiceItems: IInvoiceEntry[] = [
       {
-        name: "Foo",
+        description: "Foo",
         qty: 3,
         grossPrice: 29.7,
       },
@@ -41,14 +42,14 @@ describe("Invoice", () => {
 
   it("Creates a correct invoice with multiple items", () => {
     const invoice = new Invoice([MOCK_BASKET_ITEM_1, MOCK_BASKET_ITEM_2]);
-    const expectedInvoiceItems: IInvoiceItem[] = [
+    const expectedInvoiceItems: IInvoiceEntry[] = [
       {
-        name: "Foo",
+        description: "Foo",
         qty: 3,
         grossPrice: 29.7, // (3 * 9 * 10) / 100
       },
       {
-        name: "Bar",
+        description: "Bar",
         qty: 1,
         grossPrice: 112.5,
       },

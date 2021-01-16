@@ -1,5 +1,5 @@
 import { Invoice } from "../src/invoice";
-import { InvoicePrinter } from "../src/invoicePrinter";
+import { InvoicePrinter, IInvoicePrinter } from "../src/invoicePrinter";
 import { Product } from "../src/models/product";
 import { ProductCategory } from "../src/models/productCategory";
 import { IShoppingBasket, ShoppingBasket } from "../src/shoppingBasket";
@@ -7,7 +7,7 @@ import { TaxStrategyFactory } from "../src/taxStrategy";
 
 describe("Integration Test", () => {
   let basket: IShoppingBasket;
-  let printer: InvoicePrinter;
+  let printer: IInvoicePrinter;
 
   beforeEach(() => {
     basket = new ShoppingBasket(TaxStrategyFactory.default);

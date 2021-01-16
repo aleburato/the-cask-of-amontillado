@@ -1,34 +1,49 @@
 import { validateArrayNotEmpty } from "./utils/validators";
 import { IBasketItem } from "./models/basketItem";
-import { CustomError } from "./utils/errors";
-import { IInvoiceItem, InvoiceItem } from "./models/invoiceItem";
+import { IInvoiceEntry, InvoiceEntry } from "./models/invoiceEntry";
 import { roundToFactor } from "./utils/rounding";
+import { EmptyInvoiceError } from "./utils/errors";
 
+/**
+ * An invoice.
+ */
 export interface IInvoice {
-  readonly items: readonly IInvoiceItem[];
+  /**
+   * The invoice items.
+   */
+  readonly items: readonly IInvoiceEntry[];
+
+  /**
+   * The invoice total cost, taxes included.
+   */
   readonly total: number;
+
+  /**
+   * The taxes included in the above total.
+   */
   readonly taxes: number;
 }
 
-export class EmptyInvoiceError extends CustomError {
-  constructor() {
-    super("Item list cannot be empty");
-  }
-}
-
+/**
+ * The default IInvoice implementation.
+ */
 export class Invoice implements IInvoice {
   private static readonly RoundingFactor = 0.05;
 
+  /**
+   * Creates an invoice.
+   * @param basketItems the basket items from which the invoice is created. Cannot be empty.
+   */
   constructor(private readonly basketItems: readonly IBasketItem[]) {
     if (!validateArrayNotEmpty(this.basketItems)) {
       throw new EmptyInvoiceError();
     }
   }
 
-  get items(): readonly IInvoiceItem[] {
+  get items(): readonly IInvoiceEntry[] {
     return this.basketItems.map(
       bi =>
-        new InvoiceItem(this.getBiName(bi), bi.qty, this.getBiGrossPrice(bi))
+        new InvoiceEntry(this.getBiName(bi), bi.qty, this.getBiGrossPrice(bi))
     );
   }
 

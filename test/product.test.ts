@@ -1,6 +1,9 @@
 import { Product } from "../src/models/product";
 import { ProductCategory } from "../src/models/productCategory";
-import { InvalidPriceError, InvalidTextError } from "../src/utils/errors";
+import {
+  InvalidPriceError,
+  InvalidDescriptionError,
+} from "../src/utils/errors";
 
 describe("Product", () => {
   describe("Price", () => {
@@ -10,7 +13,7 @@ describe("Product", () => {
       ${Number.NEGATIVE_INFINITY}
       ${Number.POSITIVE_INFINITY}
       ${NaN}
-    `("cannot have '$price' price", ({ price }) => {
+    `("cannot have invalid price ($price)", ({ price }) => {
       expect(
         () => new Product(ProductCategory.Other, price, "something")
       ).toThrowError(InvalidPriceError);
@@ -22,9 +25,9 @@ describe("Product", () => {
       ${""}
       ${"    "}
       ${"\n"}
-    `("cannot have '$desc' description", ({ desc }) => {
+    `("cannot have invalid description ($desc)", ({ desc }) => {
       expect(() => new Product(ProductCategory.Other, 10, desc)).toThrowError(
-        InvalidTextError
+        InvalidDescriptionError
       );
     });
   });

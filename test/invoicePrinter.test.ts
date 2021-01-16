@@ -1,9 +1,9 @@
+import { InvoicePrinter } from "../src/invoicePrinter";
 import {
-  InvoicePrinter,
+  InvalidPriceError,
+  InvalidSalesTaxError,
   InvoicePrinterEmptyError,
-  InvoicePrinterInvalidTaxesError,
-  InvoicePrinterInvalidTotalError,
-} from "../src/invoicePrinter";
+} from "../src/utils/errors";
 
 describe("Invoice Printer", () => {
   let printer: InvoicePrinter = new InvoicePrinter();
@@ -24,10 +24,10 @@ describe("Invoice Printer", () => {
     expect(() =>
       printer.print({
         total,
-        items: [{ qty: 4, name: "meh", grossPrice: 10 }],
+        items: [{ qty: 4, description: "meh", grossPrice: 10 }],
         taxes: 10,
       })
-    ).toThrow(InvoicePrinterInvalidTotalError);
+    ).toThrow(InvalidPriceError);
   });
 
   it.each`
@@ -40,18 +40,18 @@ describe("Invoice Printer", () => {
     expect(() =>
       printer.print({
         total: 112,
-        items: [{ qty: 4, name: "meh", grossPrice: 10 }],
+        items: [{ qty: 4, description: "meh", grossPrice: 10 }],
         taxes,
       })
-    ).toThrow(InvoicePrinterInvalidTaxesError);
+    ).toThrow(InvalidSalesTaxError);
   });
 
   it("Correctly prints an invoice", () => {
     expect(
       printer.print({
         items: [
-          { qty: 1, name: "Lava Lamp", grossPrice: 11.53 },
-          { qty: 5, name: "Candy Bar", grossPrice: 56.65 },
+          { qty: 1, description: "Lava Lamp", grossPrice: 11.53 },
+          { qty: 5, description: "Candy Bar", grossPrice: 56.65 },
         ],
         taxes: 7.65,
         total: 68.18,

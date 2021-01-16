@@ -15,7 +15,7 @@ describe("BasketItem", () => {
       ${Number.NEGATIVE_INFINITY}
       ${Number.POSITIVE_INFINITY}
       ${NaN}
-    `("cannot have '$qty' qty", ({ qty }) => {
+    `("cannot have invalid qty ($qty)", ({ qty }) => {
       expect(() => new BasketItem(MOCK_BOOK, 1, qty)).toThrowError(
         InvalidQuantityError
       );
@@ -29,7 +29,7 @@ describe("BasketItem", () => {
       ${Number.NEGATIVE_INFINITY}
       ${Number.POSITIVE_INFINITY}
       ${NaN}
-    `("cannot have '$taxRate' sales tax rate", ({ tax }) => {
+    `("cannot have invalid sales tax rate ($taxRate)", ({ tax }) => {
       expect(() => new BasketItem(MOCK_FOOD, tax, 100)).toThrowError(
         InvalidSalesTaxRateError
       );

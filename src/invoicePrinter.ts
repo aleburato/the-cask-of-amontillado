@@ -1,43 +1,41 @@
 import { IInvoice } from "./invoice";
-import { CustomError } from "./utils/errors";
-import { IInvoiceItem } from "./models/invoiceItem";
+import {
+  InvalidPriceError,
+  InvalidSalesTaxError,
+  InvoicePrinterEmptyError,
+} from "./utils/errors";
+import { IInvoiceEntry } from "./models/invoiceEntry";
 import {
   validateArrayNotEmpty,
   validatePositiveFinite,
 } from "./utils/validators";
 
-export class InvoicePrinterEmptyError extends CustomError {
-  constructor() {
-    super("Cannot print an empty invoice");
-  }
+/**
+ * An invoice printer.
+ */
+export interface IInvoicePrinter {
+  /**
+   * Prints an invoice to a string.
+   * @param invoice
+   */
+  print(invoice: IInvoice): string;
 }
 
-export class InvoicePrinterInvalidTotalError extends CustomError {
-  constructor() {
-    super(
-      "Invoice total cost must be finite and greater than or equal to zero"
-    );
-  }
-}
-
-export class InvoicePrinterInvalidTaxesError extends CustomError {
-  constructor() {
-    super("Invoice taxes must be finite and greater than or equal to zero");
-  }
-}
-
-export class InvoicePrinter {
+/**
+ * The default implementation of an invoice printer.
+ */
+export class InvoicePrinter implements IInvoicePrinter {
   print(invoice: IInvoice): string {
     if (!validateArrayNotEmpty(invoice.items)) {
       throw new InvoicePrinterEmptyError();
     }
 
     if (!validatePositiveFinite(invoice.total)) {
-      throw new InvoicePrinterInvalidTotalError();
+      throw new InvalidPriceError();
     }
 
     if (!validatePositiveFinite(invoice.taxes)) {
-      throw new InvoicePrinterInvalidTaxesError();
+      throw new InvalidSalesTaxError();
     }
 
     return [
@@ -47,7 +45,7 @@ export class InvoicePrinter {
     ].join("\n");
   }
 
-  private printItem = (item: IInvoiceItem): string => {
-    return `${item.qty} ${item.name}: ${item.grossPrice.toFixed(2)}`;
+  private printItem = (item: IInvoiceEntry): string => {
+    return `${item.qty} ${item.description}: ${item.grossPrice.toFixed(2)}`;
   };
 }

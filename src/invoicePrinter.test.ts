@@ -1,9 +1,9 @@
-import { InvoicePrinter } from "../src/invoicePrinter";
+import { InvoicePrinter } from "./invoicePrinter";
 import {
   InvalidPriceError,
   InvalidSalesTaxError,
   InvoicePrinterEmptyError,
-} from "../src/utils/errors";
+} from "./utils/errors";
 
 describe("Invoice Printer", () => {
   let printer: InvoicePrinter = new InvoicePrinter();

@@ -1,9 +1,6 @@
-import { Product } from "../src/models/product";
-import { ProductCategory } from "../src/models/productCategory";
-import {
-  InvalidPriceError,
-  InvalidDescriptionError,
-} from "../src/utils/errors";
+import { Product } from "./product";
+import { ProductCategory } from "./productCategory";
+import { InvalidPriceError, InvalidDescriptionError } from "../utils/errors";
 
 describe("Product", () => {
   describe("Price", () => {

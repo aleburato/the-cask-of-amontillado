@@ -1,7 +1,7 @@
-import { Invoice } from "../src/invoice";
-import { IBasketItem } from "../src/models/basketItem";
-import { IInvoiceEntry } from "../src/models/invoiceEntry";
-import { EmptyInvoiceError } from "../src/utils/errors";
+import { Invoice } from "./invoice";
+import { IBasketItem } from "./models/basketItem";
+import { IInvoiceEntry } from "./models/invoiceEntry";
+import { EmptyInvoiceError } from "./utils/errors";
 
 const MOCK_BASKET_ITEM_1 = {
   qty: 3,

@@ -1,9 +1,9 @@
-import { Invoice } from "../src/invoice";
-import { InvoicePrinter, IInvoicePrinter } from "../src/invoicePrinter";
-import { Product } from "../src/models/product";
-import { ProductCategory } from "../src/models/productCategory";
-import { IShoppingBasket, ShoppingBasket } from "../src/shoppingBasket";
-import { TaxStrategyFactory } from "../src/taxStrategy";
+import { Invoice } from "./invoice";
+import { InvoicePrinter, IInvoicePrinter } from "./invoicePrinter";
+import { Product } from "./models/product";
+import { ProductCategory } from "./models/productCategory";
+import { IShoppingBasket, ShoppingBasket } from "./shoppingBasket";
+import { TaxStrategyFactory } from "./taxStrategy";
 
 describe("Integration Test", () => {
   let basket: IShoppingBasket;
@@ -19,7 +19,7 @@ describe("Integration Test", () => {
       new Product(ProductCategory.Book, 12.49, "book"),
       new Product(ProductCategory.Other, 14.99, "music CD"),
       new Product(ProductCategory.Food, 0.85, "chocolate bar"),
-    ].forEach(p => basket.addProduct(p));
+    ].forEach((p) => basket.addProduct(p));
 
     const invoice = new Invoice(basket.getItems());
 

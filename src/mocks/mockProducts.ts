@@ -1,5 +1,5 @@
-import { IProduct } from "../../src/models/product";
-import { ProductCategory } from "../../src/models/productCategory";
+import { IProduct } from "../models/product";
+import { ProductCategory } from "../models/productCategory";
 
 export const MOCK_BOOK: IProduct = {
   category: ProductCategory.Book,

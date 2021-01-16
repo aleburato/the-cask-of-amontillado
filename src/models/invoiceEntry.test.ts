@@ -1,9 +1,9 @@
-import { InvoiceEntry } from "../src/models/invoiceEntry";
+import { InvoiceEntry } from "./invoiceEntry";
 import {
   InvalidPriceError,
   InvalidQuantityError,
   InvalidDescriptionError,
-} from "../src/utils/errors";
+} from "../utils/errors";
 
 describe("InvoiceEntry", () => {
   describe("Description", () => {

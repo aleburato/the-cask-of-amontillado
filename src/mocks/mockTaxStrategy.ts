@@ -1,5 +1,5 @@
-import { IProduct } from "../../src/models/product";
-import { ITaxStrategy } from "../../src/taxStrategy";
+import { IProduct } from "../models/product";
+import { ITaxStrategy } from "../taxStrategy";
 
 export const MOCK_FIXED_TAX_RATE: number = 25;
 

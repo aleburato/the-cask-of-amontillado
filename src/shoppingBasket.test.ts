@@ -1,16 +1,16 @@
-import { IShoppingBasket, ShoppingBasket } from "../src/shoppingBasket";
+import { IShoppingBasket, ShoppingBasket } from "./shoppingBasket";
 
 import {
   MOCK_FIXED_TAXING_STRATEGY,
   MOCK_FIXED_TAX_RATE,
-} from "./mockData/mockTaxStrategy";
+} from "./mocks/mockTaxStrategy";
 import {
   MOCK_BOOK,
   MOCK_FOOD,
   MOCK_MEDICAL,
   MOCK_OTHER,
-} from "./mockData/mockProducts";
-import { IBasketItem } from "../src/models/basketItem";
+} from "./mocks/mockProducts";
+import { IBasketItem } from "./models/basketItem";
 
 describe("ShoppingBasket", () => {
   let basket: IShoppingBasket;

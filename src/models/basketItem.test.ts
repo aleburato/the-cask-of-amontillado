@@ -1,10 +1,10 @@
-import { BasketItem } from "../src/models/basketItem";
+import { BasketItem } from "./basketItem";
 import {
   InvalidQuantityError,
   InvalidSalesTaxRateError,
-} from "../src/utils/errors";
+} from "../utils/errors";
 
-import { MOCK_BOOK, MOCK_FOOD } from "./mockData/mockProducts";
+import { MOCK_BOOK, MOCK_FOOD } from "../mocks/mockProducts";
 
 describe("BasketItem", () => {
   describe("Quantity", () => {

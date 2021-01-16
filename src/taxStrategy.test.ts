@@ -1,11 +1,11 @@
-import { IProduct } from "../src/models/product";
-import { ITaxStrategy, TaxStrategyFactory } from "../src/taxStrategy";
+import { IProduct } from "./models/product";
+import { ITaxStrategy, TaxStrategyFactory } from "./taxStrategy";
 import {
   MOCK_BOOK,
   MOCK_FOOD,
   MOCK_MEDICAL,
   MOCK_OTHER,
-} from "./mockData/mockProducts";
+} from "./mocks/mockProducts";
 
 describe("Default Tax Strategy", () => {
   let strategy: ITaxStrategy = TaxStrategyFactory.default;

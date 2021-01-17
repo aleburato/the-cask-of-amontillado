@@ -8,7 +8,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose --collect-coverage",
     "test:coverage": "jest --collect-coverage",
     "test:watch": "jest --watch"
   },

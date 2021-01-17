@@ -1,7 +1,7 @@
 import { validateArrayNotEmpty } from "./utils/validators";
 import { IBasketItem } from "./models/basketItem";
 import { IInvoiceEntry, InvoiceEntry } from "./models/invoiceEntry";
-import { roundToFactor } from "./utils/rounding";
+import { roundUpToFactor } from "./utils/rounding";
 import { EmptyInvoiceError } from "./utils/errors";
 
 /**
@@ -42,7 +42,7 @@ export class Invoice implements IInvoice {
 
   get items(): readonly IInvoiceEntry[] {
     return this.basketItems.map(
-      bi =>
+      (bi) =>
         new InvoiceEntry(this.getBiName(bi), bi.qty, this.getBiGrossPrice(bi))
     );
   }
@@ -65,7 +65,7 @@ export class Invoice implements IInvoice {
     bi.product.price * bi.qty;
 
   private getBiTaxes = (bi: IBasketItem): number =>
-    roundToFactor(
+    roundUpToFactor(
       this.getBiNetPrice(bi) * (bi.salesTaxRate / 100),
       Invoice.RoundingFactor
     );

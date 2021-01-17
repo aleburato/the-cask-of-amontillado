@@ -8,6 +8,10 @@ import { MOCK_BOOK, MOCK_FOOD } from "../mocks/mockProducts";
 
 describe("BasketItem", () => {
   describe("Quantity", () => {
+    it("uses '1' as default quantity", () => {
+      expect(new BasketItem(MOCK_BOOK, 1).qty).toBe(1);
+    });
+
     it.each`
       qty
       ${0}

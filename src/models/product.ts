@@ -50,8 +50,5 @@ export class Product implements IProduct {
     if (!validatePositiveFinite(price)) {
       throw new InvalidPriceError();
     }
-    if (!validateNotEmptyOrWhitespace(description)) {
-      throw new InvalidDescriptionError();
-    }
   }
 }

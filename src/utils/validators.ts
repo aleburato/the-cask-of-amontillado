@@ -19,7 +19,7 @@ export function validateNotEmptyOrWhitespace(str: string): boolean {
  * @param num the number.
  */
 export function validatePositiveFinite(num: number): boolean {
-  return doValidatePositiveFinite(num, false);
+  return isFinite(num) && num >= 0;
 }
 
 /**
@@ -27,12 +27,5 @@ export function validatePositiveFinite(num: number): boolean {
  * @param num the number.
  */
 export function validatePositiveFiniteNonZero(num: number): boolean {
-  return doValidatePositiveFinite(num, true);
-}
-
-function doValidatePositiveFinite(
-  num: number,
-  mustBeGreaterThanZero: boolean
-): boolean {
-  return isFinite(num) && (mustBeGreaterThanZero ? num > 0 : num >= 0);
+  return isFinite(num) && num > 0;
 }
